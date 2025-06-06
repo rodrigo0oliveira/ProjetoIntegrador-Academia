@@ -4,6 +4,7 @@ class Academia {
     this.nome = nome;
     this.lotacao_total = lotacao_total;
     this.status = status; // "livre", "moderado", "lotado"
+    this.usuarios_presentes = usuarios_presentes;
   }
 }
 
