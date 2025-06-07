@@ -1,11 +1,23 @@
-const avisos = [];
+const { Aviso } = require('../models');
 
-exports.listarAvisos = (req, res) => {
-  res.json(avisos);
+exports.criarAviso = async (req, res) => {
+  try {
+    const { titulo, mensagem } = req.body;
+    if(!titulo||!mensagem){
+      res.status(400).json({erro:"Todos os campos são obrigatórios"});
+    }
+    const aviso = await Aviso.create({ titulo, mensagem });
+    res.status(201).json(aviso);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
 };
 
-exports.criarAviso = (req, res) => {
-  const { id, academia_id, mensagem, data } = req.body;
-  avisos.push({ id, academia_id, mensagem, data });
-  res.status(201).json({ mensagem: 'Aviso criado com sucesso' });
+exports.listarAvisos = async (req, res) => {
+  try {
+    const avisos = await Aviso.findAll();
+    res.json(avisos);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
 };

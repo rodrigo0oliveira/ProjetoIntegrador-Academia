@@ -1,12 +1,19 @@
-class Localizacao {
-  constructor(id, estado, cidade, rua, numero, academia_id) {
-    this.id = id;
-    this.estado = estado;
-    this.cidade = cidade;
-    this.rua = rua;
-    this.numero = numero;
-    this.academia_id = academia_id;
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Localizacao = sequelize.define('Localizacao', {
+  endereco: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  cidade: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  estado: {
+    type: DataTypes.STRING,
+    allowNull: false,
   }
-}
+});
 
 module.exports = Localizacao;

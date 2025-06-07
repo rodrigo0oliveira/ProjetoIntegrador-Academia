@@ -1,10 +1,15 @@
-class Aviso {
-  constructor(id, academia_id, mensagem, data) {
-    this.id = id;
-    this.academia_id = academia_id;
-    this.mensagem = mensagem;
-    this.data = data; // ISO string ou Date
-  }
-}
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Aviso = sequelize.define('Aviso', {
+  titulo: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  mensagem: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+});
 
 module.exports = Aviso;
