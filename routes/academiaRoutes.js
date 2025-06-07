@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const {
   listarAcademias,
   criarAcademia,
@@ -14,6 +13,5 @@ router.post('/', criarAcademia);
 router.put('/:id', atualizarAcademia);
 router.delete('/:id', deletarAcademia);
 router.get('/:id/status', statusLotacao);
-
 
 module.exports = router;

@@ -1,11 +1,20 @@
-const localizacoes = [];
+const { Localizacao } = require('../models');
 
-exports.listarLocalizacoes = (req, res) => {
-  res.json(localizacoes);
+exports.criarLocalizacao = async (req, res) => {
+  try {
+    const { endereco, cidade, estado } = req.body;
+    const localizacao = await Localizacao.create({ endereco, cidade, estado });
+    res.status(201).json(localizacao);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
 };
 
-exports.criarLocalizacao = (req, res) => {
-  const { id, estado, cidade, rua, numero, academia_id } = req.body;
-  localizacoes.push({ id, estado, cidade, rua, numero, academia_id });
-  res.status(201).json({ mensagem: 'Localização criada com sucesso' });
+exports.listarLocalizacoes = async (req, res) => {
+  try {
+    const localizacoes = await Localizacao.findAll();
+    res.json(localizacoes);
+  } catch (error) {
+    res.status(500).json({ erro: error.message });
+  }
 };

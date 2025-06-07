@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { listarLocalizacoes, criarLocalizacao } = require('../controllers/localizacaoController');
+const {
+  criarLocalizacao,
+  listarLocalizacoes
+} = require('../controllers/localizacaoController');
 
-router.get('/', listarLocalizacoes);
 router.post('/', criarLocalizacao);
+router.get('/', listarLocalizacoes);
 
 module.exports = router;

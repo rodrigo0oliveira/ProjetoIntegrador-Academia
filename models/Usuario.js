@@ -1,10 +1,18 @@
-class Usuario {
-  constructor(id, nome, email, senha) {
-    this.id = id;
-    this.nome = nome;
-    this.email = email;
-    this.senha = senha; // depois colocar em hash
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+
+const Usuario = sequelize.define('Usuario', {
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  idade: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   }
-}
+}, {
+  tableName: 'usuarios',
+  timestamps: true
+});
 
 module.exports = Usuario;
